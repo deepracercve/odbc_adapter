@@ -1,5 +1,4 @@
 require 'active_record'
-require 'arel/visitors/bind_visitor'
 require 'odbc'
 require 'odbc_utf8'
 
@@ -90,6 +89,8 @@ module ActiveRecord
         configure_time_options(connection)
         super(connection, logger, config)
         @database_metadata = database_metadata
+        @connection = connection
+        @raw_connection = connection
       end
 
       # Returns the human-readable name of the adapter.
